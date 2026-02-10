@@ -20,10 +20,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # package-lock.json 파일이 없어도 오류가 나지 않도록 캐시 설정을 뺍니다.
+          # 캐시 설정을 완전히 제거하여 lock 파일 체크를 피합니다.
 
       - name: Install dependencies
-        run: npm install
+        # lock 파일이 없어도 설치를 강행하는 명령어입니다.
+        run: npm install --no-package-lock
 
       - name: Build
         run: npm run build
