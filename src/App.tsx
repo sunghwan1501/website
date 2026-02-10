@@ -1,16 +1,24 @@
-import { BrowserRouter } from "react-router-dom";
-import { AppRoutes } from "./router";
-import { I18nextProvider } from "react-i18next";
-import i18n from "./i18n";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// @ 별칭을 사용하여 src 폴더를 기준으로 경로를 잡습니다.
+import HomePage from "@/pages/home/page"; 
+import AboutPage from "@/pages/about/AboutPage"; 
+import PrintMethodPage from "@/pages/print-method/PrintMethodPage";
+import ContactPage from "@/pages/contact/page";
+import NotFound from "@/pages/print-method/NotFound";
 
 function App() {
   return (
-    <I18nextProvider i18n={i18n}>
-      <BrowserRouter basename={__BASE_PATH__}>
-        <AppRoutes />
-      </BrowserRouter>
-    </I18nextProvider>
+    // GitHub Pages 주소인 /website/와 일치시킵니다.
+    <BrowserRouter basename="/website">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/print-method" element={<PrintMethodPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
